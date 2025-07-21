@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fundo1"
+    tools:context=".escola.CadastroCriancaActivity">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/imgFotoCrianca"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="32dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/perfil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.539"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/CircularImageView"
+        app:strokeColor="@android:color/white"
+        app:strokeWidth="2dp" />
+
+    <ImageButton
+        android:id="@+id/btnAbrirCamera"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/primaria_verde_menta"
+        app:layout_constraintBottom_toBottomOf="@+id/imgFotoCrianca"
+        app:layout_constraintStart_toStartOf="@+id/imgFotoCrianca"
+        app:srcCompat="@drawable/ic_photo_24" />
+
+    <ImageButton
+        android:id="@+id/btnAbrirGaleria"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:backgroundTint="@color/primaria_verde_menta"
+        app:layout_constraintBottom_toBottomOf="@+id/imgFotoCrianca"
+        app:layout_constraintEnd_toEndOf="@+id/imgFotoCrianca"
+        app:srcCompat="@drawable/ic_photo_alternate_24" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/borda"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgFotoCrianca">
+
+
+        <!-- Nome -->
+        <EditText
+            android:id="@+id/edtNomeCrianca"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/texto"
+            android:fontFamily="@font/comic_neue_bold"
+            android:hint="Nome da Criança"
+            android:inputType="textPersonName" />
+
+        <!-- Data de nascimento -->
+        <com.santalu.maskara.widget.MaskEditText
+            android:id="@+id/edtDataNascimento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/texto"
+            android:hint="Data de nascimento"
+            android:inputType="date"
+            app:mask="##/##/####" />
+
+        <!-- Turma -->
+        <Spinner
+            android:id="@+id/spinnerTurma"
+            android:layout_width="match_parent"
+            android:fontFamily="@font/comic_neue_bold"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp" />
+
+        <!-- Turno -->
+        <Spinner
+            android:id="@+id/spinnerTurno"
+            android:layout_width="match_parent"
+            android:fontFamily="@font/comic_neue_bold"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp" />
+
+        <!-- Nome do Pai -->
+        <EditText
+            android:id="@+id/edtNomePai"
+            android:layout_width="match_parent"
+            android:fontFamily="@font/comic_neue_bold"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:textColor="@color/texto"
+            android:hint="Nome do Pai"
+            android:inputType="textPersonName" />
+
+        <!-- Nome da Mãe -->
+        <EditText
+            android:id="@+id/edtNomeMae"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/comic_neue_bold"
+            android:textColor="@color/texto"
+            android:hint="Nome da Mãe"
+            android:inputType="textPersonName" />
+
+        <!-- Telefone -->
+        <com.santalu.maskara.widget.MaskEditText
+            android:id="@+id/edtTelefoneEmergencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/texto"
+            android:hint="Telefone de emergência"
+            android:inputType="phone"
+            app:mask="(##) # ####-####" />
+
+    </LinearLayout>
+
+    <!-- Botão salvar -->
+    <Button
+        android:id="@+id/btnSalvarCrianca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/comic_neue_bold"
+        android:text="Salvar"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

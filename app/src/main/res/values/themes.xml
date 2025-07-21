@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AppCrescer" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your light theme here. -->
+        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+
+        <!-- Cor principal do app -->
+        <item name="colorPrimary">@color/primaria_verde_menta</item>
+        <item name="colorPrimaryVariant">@color/verde_menta_hover</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <!-- Cor secundária -->
+        <item name="colorSecondary">@color/secundaria_amarelo_dourado</item>
+        <item name="colorSecondaryVariant">@color/amarelo_dourado_hover</item>
+        <item name="colorOnSecondary">@color/black</item>
+
+        <!-- Fundo e superfícies -->
+        <item name="android:colorBackground">@color/fundo_claro</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black</item>
+
+        <!-- Texto -->
+        <item name="android:textColor">@color/texto</item>
+
+        <!-- Outros -->
+        <item name="colorError">@color/vermelho_salmao</item>
+        <item name="colorOnError">@color/white</item>
+
+
+    </style>
+
+    <style name="Theme.AppCrescer" parent="Base.Theme.AppCrescer" />
+</resources>

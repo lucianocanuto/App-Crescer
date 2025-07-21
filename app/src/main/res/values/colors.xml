@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <!-- Cores básicas -->
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+    <color name="texto">#43977D</color>
+
+    <!-- Cores principais -->
+    <color name="primaria_verde_menta">#58C3C1</color>
+    <color name="primaria_variacao_verde_menta">#67C39D</color>
+    <color name="secundaria_amarelo_dourado">#E2BC54</color>
+
+    <!-- Neutras e fundo -->
+    <color name="fundo_claro">#F3FAFD</color>
+    <color name="cinza_claro">#D9E6EB</color>
+    <color name="azul_claro_pastel">#A3E8F2</color>
+
+    <!-- Cores de destaque -->
+    <color name="vermelho_salmao">#E76C5E</color>
+    <color name="roxo_lavanda">#B673D9</color>
+    <color name="laranja_cenoura">#F59338</color>
+    <color name="marrom_claro">#A55A3F</color>
+
+    <!-- Variações -->
+    <color name="verde_menta_hover">#90D2B5</color>
+    <color name="verde_menta_pressed">#43977D</color>
+    <color name="amarelo_dourado_hover">#FBEAA6</color>
+
+
+</resources>

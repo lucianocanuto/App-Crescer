@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "109598296581",
+    "project_id": "app-crescer-86a72",
+    "storage_bucket": "app-crescer-86a72.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:109598296581:android:999004ba3947b42a8b6a6c",
+        "android_client_info": {
+          "package_name": "br.com.educacaocrescer.appcrescer"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDD-jpP7elh8q8KKiiKyHuSmAazkFFjT8c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
