@@ -3,6 +3,7 @@ package br.com.educacaocrescer.appcrescer.escola
 import android.content.Intent
 import android.os.Bundle
 import android.text.InputType
+import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.Toast
@@ -22,6 +23,13 @@ class TelaPrinciapalEscolaActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
         Spinner()
+        binding.btnListarCriancas.setOnClickListener {
+            val turmaSelecionada = binding.spinnerTurmas.selectedItem.toString()
+            val intent = Intent(this, ListarCriancasActivity::class.java)
+            intent.putExtra("turmaSelecionada", turmaSelecionada)
+            startActivity(intent)
+            Log.d("TURMA","$turmaSelecionada")
+        }
 
         binding.btnCadastrarCrianca.setOnClickListener {
             acessarCadCrianca()
