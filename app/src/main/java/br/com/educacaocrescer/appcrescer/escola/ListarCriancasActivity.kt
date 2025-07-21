@@ -44,6 +44,7 @@ class ListarCriancasActivity : AppCompatActivity() {
             intent.putExtra("nomePai", crianca.nomePai)
             intent.putExtra("nomeMae", crianca.nomeMae)
             startActivity(intent)
+
         }
 
         binding.rvListaCrianca.layoutManager = LinearLayoutManager(this)
