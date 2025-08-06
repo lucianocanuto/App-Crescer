@@ -21,9 +21,8 @@
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="@+id/scrollView2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -31,7 +30,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:fontFamily="@font/comic_neue_bold"
         android:text="Data: 25/06/2025"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,8 +37,56 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtNomeCrianca" />
 
+    <TextView
+        android:id="@+id/txtNomePai"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#E6FFFFFF"
+        android:fontFamily="@font/comic_neue_bold"
+        android:paddingStart="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="Pai: João "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+    <!-- Botões -->
+
+    <Button
+        android:id="@+id/btnSalvarRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/primaria_verde_menta"
+        android:fontFamily="@font/comic_neue_bold"
+        android:text="Salvar Registro"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNomePai" />
+
+    <Button
+        android:id="@+id/btnVerRegistros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/primaria_verde_menta"
+        android:fontFamily="@font/comic_neue_bold"
+        android:text="Ver Registros Anteriores"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSalvarRegistro" />
+
     <ScrollView
-        android:id="@+id/scrollRegDiario"
+        android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="480dp"
         android:layout_marginStart="16dp"
@@ -57,20 +103,17 @@
             android:orientation="vertical"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
-            android:paddingBottom="16dp">
+            android:paddingBottom="16dp">>
 
             <!-- Presença -->
-
-
             <Switch
                 android:id="@+id/switchPresenca"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/comic_neue_bold" />
+                android:text="Presença" />
 
             <!-- Refeições -->
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,60 +125,51 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/comic_neue_bold"
                 android:text="Lanche da manhã" />
 
             <Spinner
                 android:id="@+id/spinnerLancheManha"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/comic_neue_bold" />
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/comic_neue_bold"
                 android:text="Almoço" />
 
             <Spinner
                 android:id="@+id/spinnerAlmoco"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/comic_neue_bold" />
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/comic_neue_bold"
                 android:text="Lanche da tarde" />
 
             <Spinner
                 android:id="@+id/spinnerLancheTarde"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="@font/comic_neue_bold" />
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/comic_neue_bold"
                 android:text="Janta" />
 
             <Spinner
                 android:id="@+id/spinnerJanta"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
+                android:layout_height="48dp" />
 
             <!-- Soninho -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/comic_neue_bold"
                 android:text="Dormiu:" />
 
             <Switch
@@ -148,14 +182,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/comic_neue_bold"
                 android:text="Evacuou:" />
 
             <Switch
                 android:id="@+id/switchEvacuacao"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
-
 
             <!-- Observações -->
             <EditText
@@ -164,7 +196,6 @@
                 android:layout_height="120dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/borda"
-                android:fontFamily="@font/comic_neue_bold"
                 android:gravity="top"
                 android:hint="Observações"
                 android:inputType="textMultiLine"
@@ -175,13 +206,6 @@
         </LinearLayout>
 
     </ScrollView>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.5" />
 
     <TextView
         android:id="@+id/textView3"
@@ -194,10 +218,12 @@
         android:paddingBottom="4dp"
         android:text="Telefone de Emergência:"
         android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollRegDiario" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
     <LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
@@ -229,7 +255,7 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="Ligar"
             android:src="@drawable/ic_telefone"
-            app:tint="@color/primaria_verde_menta" />
+            app:tint="@color/primaria_verde_menta"  />
 
         <ImageButton
             android:id="@+id/btnChat"
@@ -241,19 +267,29 @@
             app:tint="@color/primaria_verde_menta" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnSalvarRegistros"
-        android:layout_width="match_parent"
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/primaria_verde_menta"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/txtNomeMae"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#E6FFFFFF"
         android:fontFamily="@font/comic_neue_bold"
-        android:text="Ver Registros Anteriores"
-        android:textSize="16sp"
+        android:paddingStart="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="Mãe: Maria"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtNomePai"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
 
