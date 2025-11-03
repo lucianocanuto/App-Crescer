@@ -17,6 +17,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCrescer">
         <activity
+            android:name=".escola.ListarRegistrosActivity"
+            android:exported="false" />
+        <activity
             android:name=".escola.RegistroDiarioActivity"
             android:exported="false" />
         <activity

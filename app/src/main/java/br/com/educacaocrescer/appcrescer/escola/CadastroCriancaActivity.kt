@@ -1,12 +1,11 @@
 package br.com.educacaocrescer.appcrescer.escola
 
 import android.Manifest
-import android.content.ContentValues
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -41,6 +40,7 @@ class CadastroCriancaActivity : AppCompatActivity() {
     private lateinit var abrirGaleria: ActivityResultLauncher<String>
 
     private val REQUEST_CAMERA_PERMISSION = 100
+    private val REQUEST_GALLERY_PERMISSION = 110
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,32 +100,57 @@ class CadastroCriancaActivity : AppCompatActivity() {
                     val storageRef = enviar.reference.child("fotos_criancas/$nomeFoto")
 
                     if (imageUri != null) {
+                        // Upload da imagem selecionada na galeria
                         storageRef.putFile(imageUri!!)
                             .addOnSuccessListener {
                                 storageRef.downloadUrl.addOnSuccessListener { fotoUrl ->
-                                    salvarDadosCrianca(fotoUrl.toString(), nome, dataNascimento, turma, turno, nomePai, nomeMae, telefoneEmergencia, anoAtual)
+                                    salvarDadosCrianca(
+                                        fotoUrl.toString(),
+                                        nome,
+                                        dataNascimento,
+                                        turma,
+                                        turno,
+                                        nomePai,
+                                        nomeMae,
+                                        telefoneEmergencia,
+                                        anoAtual
+                                    )
                                 }
                             }
-                            .addOnFailureListener {
-                                Toast.makeText(this, "Erro ao enviar imagem", Toast.LENGTH_SHORT).show()
+                            .addOnFailureListener { e ->
+                                Log.e("UploadGaleria", "Erro upload: ${e.message}", e)
+                                Toast.makeText(this, "Erro ao enviar imagem: ${e.message}", Toast.LENGTH_LONG).show()
                             }
                     } else if (bitmapDaCamera != null) {
+                        // Upload do bitmap vindo da câmera
                         val baos = ByteArrayOutputStream()
-                        bitmapDaCamera!!.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                        bitmapDaCamera!!.compress(Bitmap.CompressFormat.JPEG, 90, baos)
                         val data = baos.toByteArray()
                         val uploadTask = storageRef.putBytes(data)
                         uploadTask.addOnSuccessListener {
                             storageRef.downloadUrl.addOnSuccessListener { fotoUrl ->
-                                salvarDadosCrianca(fotoUrl.toString(), nome, dataNascimento, turma, turno, nomePai, nomeMae, telefoneEmergencia, anoAtual)
+                                salvarDadosCrianca(
+                                    fotoUrl.toString(),
+                                    nome,
+                                    dataNascimento,
+                                    turma,
+                                    turno,
+                                    nomePai,
+                                    nomeMae,
+                                    telefoneEmergencia,
+                                    anoAtual
+                                )
                             }
-                        }.addOnFailureListener {
-                            Toast.makeText(this, "Erro ao enviar imagem da câmera", Toast.LENGTH_SHORT).show()
+                        }.addOnFailureListener { e ->
+                            Log.e("UploadCamera", "Erro upload bitmap: ${e.message}", e)
+                            Toast.makeText(this, "Erro ao enviar imagem da câmera: ${e.message}", Toast.LENGTH_LONG).show()
                         }
                     }
                 }
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Erro ao verificar duplicidade", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { e ->
+                Log.e("FirestoreQuery", "Erro ao verificar duplicidade: ${e.message}", e)
+                Toast.makeText(this, "Erro ao verificar duplicidade: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
@@ -158,12 +183,14 @@ class CadastroCriancaActivity : AppCompatActivity() {
                 Toast.makeText(this, "Criança cadastrada com sucesso!", Toast.LENGTH_SHORT).show()
                 finish()
             }
-            .addOnFailureListener {
-                Toast.makeText(this, "Erro ao salvar no banco", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener { e ->
+                Log.e("SalvarCrianca", "Erro ao salvar no banco: ${e.message}", e)
+                Toast.makeText(this, "Erro ao salvar no banco: ${e.message}", Toast.LENGTH_SHORT).show()
             }
     }
 
     private fun capturarImagem() {
+        // Câmera (retorna Bitmap)
         abrirCamera = registerForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap: Bitmap? ->
             bitmap?.let {
                 binding.imgFotoCrianca.setImageBitmap(it)
@@ -172,6 +199,7 @@ class CadastroCriancaActivity : AppCompatActivity() {
             }
         }
 
+        // Galeria (GetContent) - usa SAF e normalmente não exige permissão em Android 11+, mas pedimos por segurança
         abrirGaleria = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
             uri?.let {
                 binding.imgFotoCrianca.setImageURI(it)
@@ -182,14 +210,36 @@ class CadastroCriancaActivity : AppCompatActivity() {
 
         binding.btnAbrirCamera.setOnClickListener {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), REQUEST_CAMERA_PERMISSION)
+                != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.CAMERA),
+                    REQUEST_CAMERA_PERMISSION
+                )
             } else {
                 abrirCamera.launch(null)
             }
         }
 
         binding.btnAbrirGaleria.setOnClickListener {
+            verificarPermissaoGaleriaEabrir()
+        }
+    }
+
+    private fun verificarPermissaoGaleriaEabrir() {
+        val permissoes = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            arrayOf(Manifest.permission.READ_MEDIA_IMAGES)
+        } else {
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
+
+        // Verifica se alguma está negada
+        val precisaPedir = permissoes.any { ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED }
+
+        if (precisaPedir) {
+            ActivityCompat.requestPermissions(this, permissoes, REQUEST_GALLERY_PERMISSION)
+        } else {
             abrirGaleria.launch("image/*")
         }
     }
@@ -200,11 +250,23 @@ class CadastroCriancaActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == REQUEST_CAMERA_PERMISSION) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                abrirCamera.launch(null)
-            } else {
-                Toast.makeText(this, "Permissão da câmera negada", Toast.LENGTH_SHORT).show()
+
+        when (requestCode) {
+            REQUEST_CAMERA_PERMISSION -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    abrirCamera.launch(null)
+                } else {
+                    Toast.makeText(this, "Permissão da câmera negada", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            REQUEST_GALLERY_PERMISSION -> {
+                // se todas as permissões pedidas foram concedidas, abre a galeria
+                if (grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }) {
+                    abrirGaleria.launch("image/*")
+                } else {
+                    Toast.makeText(this, "Permissão para acessar imagens negada", Toast.LENGTH_SHORT).show()
+                }
             }
         }
     }
@@ -217,7 +279,15 @@ class CadastroCriancaActivity : AppCompatActivity() {
     }
 
     private fun spinnerTurma() {
-        val turmas = listOf("Selecione a turma", "Berçário 1", "Berçário 2", "Maternal 1", "Maternal 2 A", "Maternal 2 B", "Pré-escola")
+        val turmas = listOf(
+            "Selecione a turma",
+            "Berçário 1",
+            "Berçário 2",
+            "Maternal 1",
+            "Maternal 2 A",
+            "Maternal 2 B",
+            "Pré-escola"
+        )
         val adapterTurmas = ArrayAdapter(this, android.R.layout.simple_spinner_item, turmas)
         adapterTurmas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinnerTurma.adapter = adapterTurmas

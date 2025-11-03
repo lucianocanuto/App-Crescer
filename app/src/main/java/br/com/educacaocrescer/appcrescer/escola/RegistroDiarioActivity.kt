@@ -27,11 +27,15 @@ class RegistroDiarioActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(binding.root)
 
-        val dataFormatada = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+        // Data formatada para exibir na tela
+        val dataExibicao = java.text.SimpleDateFormat("dd/MM/yyyy", java.util.Locale.getDefault())
             .format(java.util.Date())
 
-        binding.txtDataAtual.text = "Data: $dataFormatada"
-       // dataAtual()
+
+        binding.txtDataAtual.text = "Data: $dataExibicao"
+
+
+
         configurarSpinners()
         val id = intent.getStringExtra("idCrianca")
 
@@ -41,6 +45,13 @@ class RegistroDiarioActivity : AppCompatActivity() {
         binding.txtTelefoneEmergencia.text = intent.getStringExtra("telefoneEmergencia")
 
         binding.btnSalvarRegistro.setOnClickListener {
+
+            // Data formatada para salvar (ordem correta no banco)
+            val dataBanco = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+                .format(java.util.Date())
+
+
+
             val idCrianca = intent.getStringExtra("idCrianca") ?: return@setOnClickListener
             val data = binding.txtDataAtual.text.toString().replace("Data: ", "")
             val presenca = binding.switchPresenca.isChecked
@@ -53,8 +64,15 @@ class RegistroDiarioActivity : AppCompatActivity() {
             val lancheTarde = binding.spinnerLancheTarde.selectedItem.toString()
             val janta = binding.spinnerJanta.selectedItem.toString()
 
+            // ✅ Verificação antes de salvar
+            if (observacoes.isEmpty() && !presenca && !soninho && !evacuacao) {
+                Toast.makeText(this, "Preencha pelo menos um campo antes de salvar.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
             val registro = hashMapOf(
-                "data" to dataFormatada,
+                "data" to dataBanco,  // formato para ordenação
+                "dataExibicao" to dataExibicao, // formato bonito para mostrar na lista
                 "presenca" to binding.switchPresenca.isChecked,
                 "lancheManha" to binding.spinnerLancheManha.selectedItem.toString(),
                 "almoco" to binding.spinnerAlmoco.selectedItem.toString(),
@@ -71,7 +89,7 @@ class RegistroDiarioActivity : AppCompatActivity() {
             db.collection("criancas")
                 .document(idCrianca)
                 .collection("registros")
-                .document(dataFormatada) // aqui é o nome do documento, 1 por dia
+                .document(dataBanco) // aqui é o nome do documento, 1 por dia
                 .set(registro)
                 .addOnSuccessListener {
                     Toast.makeText(this, "Registro salvo com sucesso!", Toast.LENGTH_SHORT).show()
@@ -80,6 +98,12 @@ class RegistroDiarioActivity : AppCompatActivity() {
                 .addOnFailureListener {
                     Toast.makeText(this, "Erro ao salvar o registro", Toast.LENGTH_SHORT).show()
                 }
+        }
+        binding.btnVerRegistros.setOnClickListener {
+            val intent = android.content.Intent(this, ListarRegistrosActivity::class.java)
+            intent.putExtra("idCrianca", id)
+            startActivity(intent)
+
         }
 
 
@@ -105,5 +129,6 @@ class RegistroDiarioActivity : AppCompatActivity() {
 
         binding.txtDataAtual.text = "Data: $dataFormatada"
     }*/
+    
 
 }

@@ -1,0 +1,54 @@
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:layout_marginHorizontal="12dp"
+    app:cardCornerRadius="14dp"
+    app:cardElevation="6dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Data -->
+        <TextView
+            android:id="@+id/txtDataRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comic_neue_bold"
+            android:text="Data: 25/10/2025"
+            android:textColor="@color/texto"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- Resumo geral -->
+        <TextView
+            android:id="@+id/txtResumoRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/comic_neue_bold"
+            android:text="Presença: Sim | Almoço: Comeu tudo"
+            android:textColor="@android:color/darker_gray"
+            android:textSize="16sp" />
+
+        <!-- Observações -->
+        <TextView
+            android:id="@+id/txtObservacoesRegistro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:layout_marginBottom="2dp"
+            android:fontFamily="@font/comic_neue_bold"
+            android:text="Observações: Brincou bastante hoje e dormiu bem."
+            android:textColor="@android:color/black"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
