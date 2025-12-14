@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="6dp"
+    android:background="@color/white">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/imgFoto"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:scaleType="centerCrop"
+            app:shapeAppearanceOverlay="@style/CircularImageView"
+            app:strokeColor="@color/primaria_verde_menta"
+            app:strokeWidth="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/txtNome"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/comic_neue_bold"
+            android:maxLines="1"
+            android:text="Nome da Criança"
+            android:textColor="@color/primaria_verde_menta"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@id/imgFoto"
+            app:layout_constraintTop_toTopOf="@id/imgFoto" />
+
+        <TextView
+            android:id="@+id/txtTurma"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/comic_neue_regular"
+            android:maxLines="1"
+            android:text="Berçário 1 "
+            android:textColor="#777777"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="@id/imgFoto"
+            app:layout_constraintStart_toStartOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+        <TextView
+            android:id="@+id/txtTurno"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:fontFamily="@font/comic_neue_regular"
+            android:maxLines="1"
+            android:text="Turno"
+            android:textColor="#777777"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="@+id/txtTurma"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/txtTurma"
+            app:layout_constraintTop_toTopOf="@+id/txtTurma" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/comic_neue_bold"
+            android:text="Turma:"
+            app:layout_constraintStart_toStartOf="@+id/txtNome"
+            app:layout_constraintTop_toBottomOf="@+id/txtNome" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/comic_neue_bold"
+            android:text="Turno:"
+            app:layout_constraintBottom_toBottomOf="@+id/textView"
+            app:layout_constraintStart_toStartOf="@+id/txtTurno"
+            app:layout_constraintTop_toTopOf="@+id/textView" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

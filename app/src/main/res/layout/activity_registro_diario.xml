@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fundo1"
+    tools:context=".escola.RegistroDiarioActivity">
+
+    <!-- Nome da criança e data -->
+
+    <TextView
+        android:id="@+id/txtNomeCrianca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/comic_neue_bold"
+        android:paddingBottom="8dp"
+        android:text="Nome da Criança"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        app:layout_constraintStart_toStartOf="@+id/scrollView2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txtDataAtual"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Data: 25/06/2025"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNomeCrianca" />
+
+    <TextView
+        android:id="@+id/txtNomePai"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#E6FFFFFF"
+        android:fontFamily="@font/comic_neue_bold"
+        android:paddingStart="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="Pai: João "
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+    <!-- Botões -->
+
+    <Button
+        android:id="@+id/btnSalvarRegistro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/primaria_verde_menta"
+        android:fontFamily="@font/comic_neue_bold"
+        android:text="Salvar Registro"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtNomePai" />
+
+    <Button
+        android:id="@+id/btnVerRegistros"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/primaria_verde_menta"
+        android:fontFamily="@font/comic_neue_bold"
+        android:text="Ver Registros Anteriores"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSalvarRegistro" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/borda"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDataAtual">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingBottom="16dp">>
+
+            <!-- Presença -->
+            <Switch
+                android:id="@+id/switchPresenca"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginTop="16dp"
+                android:text="Presença"
+                android:textColor="@color/verde_menta_pressed"
+                android:textStyle="bold" />
+
+            <!-- Refeições -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Refeições:"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lanche da manhã"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinnerLancheManha"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Almoço"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinnerAlmoco"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lanche da tarde"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinnerLancheTarde"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Janta"
+                android:textStyle="bold" />
+
+            <Spinner
+                android:id="@+id/spinnerJanta"
+                android:layout_width="match_parent"
+                android:layout_height="48dp" />
+
+            <!-- Soninho -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Soninho:"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/switchSoninho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!-- Evacuação -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Evacuou:"
+                android:textStyle="bold" />
+
+            <Switch
+                android:id="@+id/switchEvacuacao"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <!-- Observações -->
+            <EditText
+                android:id="@+id/edtObservacoes"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/borda"
+                android:gravity="top"
+                android:hint="Observações"
+                android:inputType="textMultiLine"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#FCFCFC"
+        android:fontFamily="@font/comic_neue_bold"
+        android:paddingStart="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="Telefone de Emergência:"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#EDFFFFFF"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="16dp"
+        android:paddingEnd="16dp"
+        android:paddingRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3">
+
+        <TextView
+            android:id="@+id/txtTelefoneEmergencia"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="(00) 00000-0000"
+            android:textSize="20sp" />
+
+        <ImageButton
+            android:id="@+id/btnLigar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Ligar"
+            android:src="@drawable/ic_telefone"
+            app:tint="@color/primaria_verde_menta"  />
+
+        <ImageButton
+            android:id="@+id/btnChat"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Enviar mensagem"
+            android:src="@drawable/ic_chat"
+            app:tint="@color/primaria_verde_menta" />
+    </LinearLayout>
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <TextView
+        android:id="@+id/txtNomeMae"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#E6FFFFFF"
+        android:fontFamily="@font/comic_neue_bold"
+        android:paddingStart="16dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="Mãe: Maria"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/txtNomePai"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

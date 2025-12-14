@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -15,6 +16,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCrescer">
+        <activity
+            android:name=".responsavel.PainelPaisActivity"
+            android:exported="false" />
+        <activity
+            android:name=".escola.ListarRegistrosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".escola.RegistroDiarioActivity"
+            android:exported="false" />
+        <activity
+            android:name=".escola.ListarCriancasActivity"
+            android:exported="false" />
         <activity
             android:name=".escola.CadastroCriancaActivity"
             android:exported="false" />
